@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntryDetailViewController: UIViewController {
+class EntryDetailViewController: UIViewController, UITextFieldDelegate {
 
     var entry: Entry? {
         didSet {
@@ -26,7 +26,11 @@ class EntryDetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .lightGray
         self.updateViews()
-        self.titleTextField.addTarget(self, action: #selector(toggleSaveButton), for: .editingChanged)
+        self.titleTextField.delegate = self
+//        self.titleTextField.addTarget(self, action: #selector(toggleSaveButton), for: .editingChanged)
+        if let _ = entry {
+            self.saveButton.isEnabled = true
+        }
     }
     
  
@@ -55,11 +59,26 @@ class EntryDetailViewController: UIViewController {
         }
     }
     
-    @objc private func toggleSaveButton() {
-            if !self.titleTextField.text!.isEmpty {
-                self.saveButton.isEnabled = true
+//    @objc private func toggleSaveButton() {
+//   self.saveButton.isEnabled = !self.titleTextField.text!.isEmpty
+//                          or
+//            if !self.titleTextField.text!.isEmpty {
+//                self.saveButton.isEnabled = true
+//            } else {
+//                self.saveButton.isEnabled = false
+//                }
+//            }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let oldText = textField.text!
+        let stringRange = Range(range, in: oldText)!
+        let newText = oldText.replacingCharacters(in: stringRange, with: string)
+
+        if newText.count == 0 {
+            self.saveButton.isEnabled = false
             } else {
-                self.saveButton.isEnabled = false
-                }
+            self.saveButton.isEnabled = true
             }
+        return true
+    }
+
 }
