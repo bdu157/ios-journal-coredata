@@ -51,7 +51,6 @@ class EntryController {
     func updateEntry(title: String, bodyText: String, for entry: Entry) {
         entry.title = title
         entry.bodyText = bodyText
-       // entry.timestamp = Date()
         
         do {
             let moc = CoreDataStack.shared.mainContext

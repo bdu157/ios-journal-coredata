@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JournalCell" rowHeight="63" id="d1a-Mn-mrA" customClass="EntryTableViewCell" customModule="ios_journal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="63"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JournalCell" rowHeight="74" id="d1a-Mn-mrA" customClass="EntryTableViewCell" customModule="ios_journal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d1a-Mn-mrA" id="uf6-Wj-zIm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="62.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="73.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzn-Ic-Qap">
@@ -37,7 +37,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrW-1K-5cJ">
-                                            <rect key="frame" x="10" y="34.666666666666664" width="355" height="18"/>
+                                            <rect key="frame" x="10" y="45" width="355" height="18.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -61,6 +61,7 @@
                                         <constraint firstItem="Tzn-Ic-Qap" firstAttribute="top" secondItem="uf6-Wj-zIm" secondAttribute="top" constant="10" id="Y6d-cH-xKh"/>
                                         <constraint firstAttribute="bottom" secondItem="zrW-1K-5cJ" secondAttribute="bottom" constant="10" id="itD-cA-Rod"/>
                                         <constraint firstAttribute="trailing" secondItem="O4a-ga-2aU" secondAttribute="trailing" constant="10" id="uEX-aZ-1wy"/>
+                                        <constraint firstItem="zrW-1K-5cJ" firstAttribute="top" secondItem="Tzn-Ic-Qap" secondAttribute="bottom" constant="12" id="wHR-N0-Ofg"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -124,7 +125,7 @@
                         <viewLayoutGuide key="safeArea" id="fll-oS-PTH"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="9Nk-if-yPe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="U18-af-Ag8">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="U18-af-Ag8">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="Wzf-iy-ieH" id="JXm-bV-4kd"/>
                             </connections>
@@ -160,6 +161,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MzI-Ce-TsI"/>
+        <segue reference="1oE-r7-JO6"/>
     </inferredMetricsTieBreakers>
 </document>

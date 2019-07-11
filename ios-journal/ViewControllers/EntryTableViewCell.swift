@@ -26,6 +26,10 @@ class EntryTableViewCell: UITableViewCell {
         guard let entry = entry else {return}
             self.titleLabel.text = entry.title
             self.bodytextLabel.text = entry.bodyText
-            //self.timeLabel = entry.timestamp
+        
+            let df = DateFormatter()
+            df.dateStyle = .short
+            df.timeStyle = .short
+            self.timeLabel.text = df.string(from: entry.timestamp!)
     }
 }

@@ -26,6 +26,7 @@ class EntryDetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .lightGray
         self.updateViews()
+        self.titleTextField.addTarget(self, action: #selector(toggleSaveButton), for: .editingChanged)
     }
     
  
@@ -53,4 +54,12 @@ class EntryDetailViewController: UIViewController {
             self.title = "Create Entry"
         }
     }
+    
+    @objc private func toggleSaveButton() {
+            if !self.titleTextField.text!.isEmpty {
+                self.saveButton.isEnabled = true
+            } else {
+                self.saveButton.isEnabled = false
+                }
+            }
 }
