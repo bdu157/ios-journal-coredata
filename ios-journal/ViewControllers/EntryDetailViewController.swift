@@ -10,6 +10,12 @@ import UIKit
 
 class EntryDetailViewController: UIViewController {
 
+    var entry: Entry? {
+        didSet {
+            updateViews()
+        }
+    }
+    var entryController: EntryController?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
@@ -19,21 +25,32 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .lightGray
+        self.updateViews()
     }
     
-
-  
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
  
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let titleInput = titleTextField.text,
+            let bodyTextInput = textView.text,
+            let entryController = entryController else {return}
         
-        
+        if let entry = entry {
+                entryController.updateEntry(title: titleInput, bodyText: bodyTextInput, for: entry)
+        } else {
+                entryController.createEntry(title: titleInput, bodyText: bodyTextInput)
+            }
+        self.navigationController?.popViewController(animated: true)
     }
     
+    func updateViews() {
+        guard isViewLoaded else {return}
+        
+        if let entry = entry {
+            self.titleTextField.text = entry.title
+            self.textView.text = entry.bodyText
+            self.title = entry.title
+        } else {
+            self.title = "Create Entry"
+        }
+    }
 }
