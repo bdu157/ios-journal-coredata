@@ -12,6 +12,9 @@
 		0BB7B11A22D6CCA2009ACC0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7B11822D6CCA2009ACC0E /* Main.storyboard */; };
 		0BB7B11C22D6CCA3009ACC0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7B11B22D6CCA3009ACC0E /* Assets.xcassets */; };
 		0BB7B11F22D6CCA3009ACC0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7B11D22D6CCA3009ACC0E /* LaunchScreen.storyboard */; };
+		0BB7B12722D6CE63009ACC0E /* EntriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7B12622D6CE63009ACC0E /* EntriesTableViewController.swift */; };
+		0BB7B12922D6CEFA009ACC0E /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7B12822D6CEFA009ACC0E /* EntryTableViewCell.swift */; };
+		0BB7B12E22D6D104009ACC0E /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7B12D22D6D104009ACC0E /* EntryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		0BB7B11B22D6CCA3009ACC0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BB7B11E22D6CCA3009ACC0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BB7B12022D6CCA3009ACC0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BB7B12622D6CE63009ACC0E /* EntriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesTableViewController.swift; sourceTree = "<group>"; };
+		0BB7B12822D6CEFA009ACC0E /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		0BB7B12D22D6D104009ACC0E /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				0BB7B11322D6CCA2009ACC0E /* ios-journal */,
+				0BB7B12C22D6D045009ACC0E /* Resources */,
 				0BB7B11222D6CCA2009ACC0E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,14 +61,40 @@
 		0BB7B11322D6CCA2009ACC0E /* ios-journal */ = {
 			isa = PBXGroup;
 			children = (
-				0BB7B11422D6CCA2009ACC0E /* AppDelegate.swift */,
+				0BB7B12A22D6D025009ACC0E /* Models */,
+				0BB7B12B22D6D032009ACC0E /* ViewControllers */,
+			);
+			path = "ios-journal";
+			sourceTree = "<group>";
+		};
+		0BB7B12A22D6D025009ACC0E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0BB7B12B22D6D032009ACC0E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				0BB7B11622D6CCA2009ACC0E /* ViewController.swift */,
+				0BB7B12622D6CE63009ACC0E /* EntriesTableViewController.swift */,
+				0BB7B12D22D6D104009ACC0E /* EntryDetailViewController.swift */,
+				0BB7B12822D6CEFA009ACC0E /* EntryTableViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0BB7B12C22D6D045009ACC0E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0BB7B11422D6CCA2009ACC0E /* AppDelegate.swift */,
 				0BB7B11822D6CCA2009ACC0E /* Main.storyboard */,
 				0BB7B11B22D6CCA3009ACC0E /* Assets.xcassets */,
 				0BB7B11D22D6CCA3009ACC0E /* LaunchScreen.storyboard */,
 				0BB7B12022D6CCA3009ACC0E /* Info.plist */,
 			);
-			path = "ios-journal";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BB7B12922D6CEFA009ACC0E /* EntryTableViewCell.swift in Sources */,
+				0BB7B12722D6CE63009ACC0E /* EntriesTableViewController.swift in Sources */,
 				0BB7B11722D6CCA2009ACC0E /* ViewController.swift in Sources */,
+				0BB7B12E22D6D104009ACC0E /* EntryDetailViewController.swift in Sources */,
 				0BB7B11522D6CCA2009ACC0E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +320,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C22Z4773SH;
-				INFOPLIST_FILE = "ios-journal/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C22Z4773SH;
-				INFOPLIST_FILE = "ios-journal/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
