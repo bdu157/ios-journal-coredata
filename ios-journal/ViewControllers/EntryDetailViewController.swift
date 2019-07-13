@@ -27,6 +27,7 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = .lightGray
         self.updateViews()
         self.titleTextField.delegate = self
+//        self.toggleSaveButton()
 //        self.titleTextField.addTarget(self, action: #selector(toggleSaveButton), for: .editingChanged)
         if let _ = entry {
             self.saveButton.isEnabled = true

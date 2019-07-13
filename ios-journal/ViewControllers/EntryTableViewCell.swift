@@ -16,7 +16,6 @@ class EntryTableViewCell: UITableViewCell {
         }
     }
     
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodytextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
