@@ -41,6 +41,11 @@ class EntriesTableViewController: UITableViewController, NSFetchedResultsControl
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedRsultsController.sections?.count ?? 1
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sectionInfo = self.fetchedRsultsController.sections?[section] else {return nil}
+        return sectionInfo.name
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
