@@ -36,8 +36,9 @@ class EntryController {
     //CRUD
     
     //Create
-    func createEntry(title: String, bodyText: String) {
-        let _ = Entry(title: title, bodyText: bodyText)
+    func createEntry(title: String, bodyText: String, mood: Moods) {
+        
+        let _ = Entry(title: title, bodyText: bodyText, mood: mood)
         
         do {
             let moc = CoreDataStack.shared.mainContext
@@ -48,9 +49,10 @@ class EntryController {
     }
     
     //Update
-    func updateEntry(title: String, bodyText: String, for entry: Entry) {
+    func updateEntry(title: String, bodyText: String, mood: Moods, for entry: Entry) {
         entry.title = title
         entry.bodyText = bodyText
+        entry.mood = mood.rawValue
         
         do {
             let moc = CoreDataStack.shared.mainContext

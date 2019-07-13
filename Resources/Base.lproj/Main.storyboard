@@ -98,13 +98,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocS-Sb-5Vh">
-                                <rect key="frame" x="15" y="155" width="345" height="30"/>
+                                <rect key="frame" x="15" y="198" width="345" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XHn-87-Xwg">
-                                <rect key="frame" x="15" y="205" width="345" height="300"/>
+                                <rect key="frame" x="15" y="248" width="345" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="k4v-nv-EI5"/>
@@ -112,12 +112,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yX3-zQ-eBt">
+                                <rect key="frame" x="16" y="155" width="343" height="29"/>
+                                <segments>
+                                    <segment title="☹️"/>
+                                    <segment title="😐"/>
+                                    <segment title="😄"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ocS-Sb-5Vh" firstAttribute="leading" secondItem="fll-oS-PTH" secondAttribute="leading" constant="15" id="2xQ-Ty-P7U"/>
+                            <constraint firstItem="yX3-zQ-eBt" firstAttribute="top" secondItem="fll-oS-PTH" secondAttribute="top" constant="15" id="APo-zn-YfV"/>
+                            <constraint firstItem="fll-oS-PTH" firstAttribute="trailing" secondItem="yX3-zQ-eBt" secondAttribute="trailing" constant="16" id="C1O-HW-gIs"/>
                             <constraint firstItem="fll-oS-PTH" firstAttribute="trailing" secondItem="XHn-87-Xwg" secondAttribute="trailing" constant="15" id="Q6w-z6-PoX"/>
-                            <constraint firstItem="ocS-Sb-5Vh" firstAttribute="top" secondItem="fll-oS-PTH" secondAttribute="top" constant="15" id="cev-xr-cUU"/>
+                            <constraint firstItem="yX3-zQ-eBt" firstAttribute="leading" secondItem="fll-oS-PTH" secondAttribute="leading" constant="16" id="dTM-0v-b5c"/>
+                            <constraint firstItem="ocS-Sb-5Vh" firstAttribute="top" secondItem="yX3-zQ-eBt" secondAttribute="bottom" constant="15" id="eww-Yi-nvk"/>
                             <constraint firstItem="XHn-87-Xwg" firstAttribute="top" secondItem="ocS-Sb-5Vh" secondAttribute="bottom" constant="20" id="kyR-bJ-LXq"/>
                             <constraint firstItem="XHn-87-Xwg" firstAttribute="leading" secondItem="fll-oS-PTH" secondAttribute="leading" constant="15" id="o3M-pZ-nwc"/>
                             <constraint firstItem="fll-oS-PTH" firstAttribute="trailing" secondItem="ocS-Sb-5Vh" secondAttribute="trailing" constant="15" id="vK9-ST-Qyf"/>
@@ -133,6 +144,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="saveButton" destination="U18-af-Ag8" id="HAQ-Mi-1X2"/>
+                        <outlet property="segmentedControl" destination="yX3-zQ-eBt" id="HMl-sd-6fh"/>
                         <outlet property="textView" destination="XHn-87-Xwg" id="B87-14-fcb"/>
                         <outlet property="titleTextField" destination="ocS-Sb-5Vh" id="HZL-AM-EgW"/>
                     </connections>

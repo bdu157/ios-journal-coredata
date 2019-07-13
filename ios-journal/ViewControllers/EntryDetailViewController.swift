@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EntryDetailViewController: UIViewController, UITextFieldDelegate {
 
@@ -20,6 +21,7 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
     override func viewDidLoad() {
@@ -40,16 +42,27 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
             let bodyTextInput = textView.text,
             let entryController = entryController else {return}
         
+        let moodIndex = segmentedControl.selectedSegmentIndex
+        let mood = Moods.allMoods[moodIndex]
+        
         if let entry = entry {
-                entryController.updateEntry(title: titleInput, bodyText: bodyTextInput, for: entry)
+            entryController.updateEntry(title: titleInput, bodyText: bodyTextInput, mood: mood, for: entry)
         } else {
-                entryController.createEntry(title: titleInput, bodyText: bodyTextInput)
+            entryController.createEntry(title: titleInput, bodyText: bodyTextInput, mood: mood)
             }
         self.navigationController?.popViewController(animated: true)
     }
     
     func updateViews() {
         guard isViewLoaded else {return}
+        
+        let mood: Moods
+        if let moods = entry?.mood {
+            mood = Moods(rawValue: moods)!
+        } else {
+            mood = .neutral
+        }
+        segmentedControl.selectedSegmentIndex = Moods.allMoods.firstIndex(of: mood)!
         
         if let entry = entry {
             self.titleTextField.text = entry.title
