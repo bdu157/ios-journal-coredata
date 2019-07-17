@@ -11,8 +11,9 @@ import CoreData
 
 class EntryController {
     
+    
     init() {
-        fetchEntriesFromServer()
+        self.fetchEntriesFromServer()
     }
     
     let baseURL = URL(string: "https://task-coredata.firebaseio.com/")!
