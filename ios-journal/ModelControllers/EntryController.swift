@@ -11,6 +11,8 @@ import CoreData
 
 class EntryController {
     
+    let baseURL = URL(string: "https://task-coredata.firebaseio.com/")!
+    
     func saveToPersistentStore() {
         do {
             let moc = CoreDataStack.shared.mainContext
@@ -38,7 +40,8 @@ class EntryController {
     //Create
     func createEntry(title: String, bodyText: String, mood: Moods) {
         
-        let _ = Entry(title: title, bodyText: bodyText, mood: mood)
+        let entry = Entry(title: title, bodyText: bodyText, mood: mood)
+        self.put(entry: entry)
         
         do {
             let moc = CoreDataStack.shared.mainContext
@@ -54,6 +57,8 @@ class EntryController {
         entry.bodyText = bodyText
         entry.mood = mood.rawValue
         
+        self.put(entry: entry)
+        
         do {
             let moc = CoreDataStack.shared.mainContext
             try moc.save()
@@ -64,6 +69,8 @@ class EntryController {
     
     //Delete
     func deleteEntry(for entry: Entry) {
+        
+        self.deleteTaskFromServer(entry)
         let moc = CoreDataStack.shared.mainContext
         moc.delete(entry)
         
@@ -73,5 +80,59 @@ class EntryController {
             moc.reset()
             NSLog("Error saving managed object context:\(error)")
         }
+    }
+    
+    
+    //PUT
+    
+    func put(entry: Entry, completion: @escaping (Error?) -> Void = { _ in}) {
+        let identifier = entry.identifier
+        
+        let requestURL = baseURL.appendingPathComponent(identifier!).appendingPathExtension("json")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "PUT"
+        
+        do {
+            guard let representation = entry.entryRepresentation else {
+                completion(NSError())
+                return
+            }
+            request.httpBody = try JSONEncoder().encode(representation)
+        } catch {
+            NSLog("Error encoding task \(entry): \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error PUTing task to server: \(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    //DELETE
+    
+    func deleteTaskFromServer(_ entry: Entry, completion: @escaping (Error?)->Void = { _ in}) {
+        guard let identifier = entry.identifier else {
+            completion(NSError())
+            return
+        }
+        let requestURL = baseURL.appendingPathComponent(identifier).appendingPathExtension("json")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error in deleting entry:\(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
     }
 }
