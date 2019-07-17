@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B005AB022DED36E00BA4898 /* EntryRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B005AAF22DED36E00BA4898 /* EntryRepresentation.swift */; };
 		0BB7B11522D6CCA2009ACC0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7B11422D6CCA2009ACC0E /* AppDelegate.swift */; };
 		0BB7B11A22D6CCA2009ACC0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7B11822D6CCA2009ACC0E /* Main.storyboard */; };
 		0BB7B11C22D6CCA3009ACC0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7B11B22D6CCA3009ACC0E /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B005AAF22DED36E00BA4898 /* EntryRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepresentation.swift; sourceTree = "<group>"; };
 		0BB7B11122D6CCA2009ACC0E /* ios-journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-journal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BB7B11422D6CCA2009ACC0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BB7B11922D6CCA2009ACC0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				0BB7B12F22D6D528009ACC0E /* CoreDataStack.swift */,
 				0BB7B13122D6D571009ACC0E /* Entry.xcdatamodeld */,
 				0BB7B13422D6D5D0009ACC0E /* Entry+Convenience.swift */,
+				0B005AAF22DED36E00BA4898 /* EntryRepresentation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				0BB7B13522D6D5D0009ACC0E /* Entry+Convenience.swift in Sources */,
 				0BB7B13022D6D528009ACC0E /* CoreDataStack.swift in Sources */,
 				0BB7B12E22D6D104009ACC0E /* EntryDetailViewController.swift in Sources */,
+				0B005AB022DED36E00BA4898 /* EntryRepresentation.swift in Sources */,
 				0BB7B11522D6CCA2009ACC0E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

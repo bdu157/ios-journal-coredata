@@ -19,8 +19,10 @@ enum Moods: String {
     }
 }
 
+
+//it does not matter if SQL properties have optional or not it all depends on how initializer is set up. they are set up as none of them are optional so even though SQL's properties have optionals you follow how it is set up here
 extension Entry {
-    convenience init(title: String, bodyText: String, identifier: String = "", timestamp: Date = Date(), mood: Moods = .neutral, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(title: String, bodyText: String, identifier: String = UUID().uuidString, timestamp: Date = Date(), mood: Moods = .neutral, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.title = title
         self.bodyText = bodyText
