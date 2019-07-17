@@ -11,6 +11,13 @@ import CoreData
 
 class EntriesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    
+    @IBAction func refreshControl(_ sender: Any) {
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+
     var entryController = EntryController()
     
 //    var entries: [Entry] {
