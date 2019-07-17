@@ -39,7 +39,7 @@ extension Entry {
         self.mood = mood.rawValue
     }
     
-    //failable initializer
+    //failable initializer - this might work or might not work
     convenience init?(entryRepresentation: EntryRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         guard let mood = Moods(rawValue: entryRepresentation.mood) else {return nil}
