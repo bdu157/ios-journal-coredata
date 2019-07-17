@@ -135,4 +135,29 @@ class EntryController {
             completion(nil)
         }.resume()
     }
+    
+    //UPDATE
+    func update(entry: Entry, entryRepresentation: EntryRepresentation) {
+        entry.title = entryRepresentation.title
+        entry.mood = entryRepresentation.mood
+        entry.bodyText = entryRepresentation.bodyText
+        entry.timestamp = entryRepresentation.timestamp
+        entry.identifier = entryRepresentation.identifier
+    }
+    
+    //FETCH FROM PersistentStore
+    func fetchSingleEntryFromPersistentStore(forIdentifier identifier: String) -> Entry? {
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
+        
+        do {
+            let moc = CoreDataStack.shared.mainContext
+            return try moc.fetch(fetchRequest).first
+        } catch {
+            NSLog("Error fetching entry with identifier: \(identifier): \(error)")
+            return nil
+        }
+    }
+    
 }
