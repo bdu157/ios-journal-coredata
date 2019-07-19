@@ -29,7 +29,6 @@ extension Entry {
         return EntryRepresentation(title: title , bodyText: bodyText ?? "", identifier: identifier ?? "", timestamp: timestamp ?? Date(), mood: mood ?? "")
     }
     
-    
     convenience init(title: String, bodyText: String, identifier: String = UUID().uuidString, timestamp: Date = Date(), mood: Moods = .neutral, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.title = title

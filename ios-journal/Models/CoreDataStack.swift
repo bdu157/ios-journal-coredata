@@ -20,6 +20,7 @@ class CoreDataStack {
                 fatalError("Failed to load persistent stores: \(error)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()   //to initialize this container property   so it gets called and recognized when it is called/ without this it requires init if you use let container
     

@@ -162,18 +162,30 @@ class EntryController {
             
             do {
                 entryRepresentations = Array(try JSONDecoder().decode([String: EntryRepresentation].self, from: data).values)
-                
-                for entryRep in entryRepresentations {
-                    let entry = self.fetchSingleEntryFromPersistentStore(forIdentifier: entryRep.identifier) //an Entry from persistentStore that matches entryRep.identifier from decoded data (firebase)
-                    if let entry = entry {  //if there is entry that has same identifier as entryRep.identifier
-                        if entry != entryRep {  //make sure if there is any difference between entry from persistentstore and firebase
-                            self.update(entry: entry, entryRepresentation: entryRep) //update if there is any difference
+                //backgroundContext for fetched data from firebase (backgroundThread)
+                let backgroundContext = CoreDataStack.shared.container.newBackgroundContext()
+                var error: Error? = nil
+                //use performAndWait for backgroundContext and backgroundThread
+                backgroundContext.performAndWait {
+                    for entryRep in entryRepresentations {
+                        let entry = self.fetchSingleEntryFromPersistentStore(forIdentifier: entryRep.identifier, context: backgroundContext) //an Entry from persistentStore that matches entryRep.identifier from decoded data (firebase)
+                        if let entry = entry {  //if there is entry that has same identifier as entryRep.identifier
+                            if entry != entryRep {  //make sure if there is any difference between entry from persistentstore and firebase
+                                self.update(entry: entry, entryRepresentation: entryRep) //update if there is any difference
+                            }
+                        } else {
+                            //backgroundContext instead of mainContext - conveinence init?
+                            let _ = Entry(entryRepresentation: entryRep, context: backgroundContext)  //since there is no entry that has identifier that matches entryRep.identifier, create new and save it to
                         }
-                    } else {
-                        let _ = Entry(entryRepresentation: entryRep)  //since there is no entry that has identifier that matches entryRep.identifier, create new and save it to 
+                    }
+                    //self.saveToPersistentStore()
+                    do {
+                        try backgroundContext.save()  //backgroundConext
+                    } catch let saveError {
+                        error = saveError
                     }
                 }
-                self.saveToPersistentStore()
+                if let error = error { throw error }
                 completion(nil)
             } catch {
                 NSLog("Error decoding entry representations: \(error)")
@@ -194,18 +206,26 @@ class EntryController {
     }
     
     //FETCH FROM PersistentStore
-    func fetchSingleEntryFromPersistentStore(forIdentifier identifier: String) -> Entry? {
+    func fetchSingleEntryFromPersistentStore(forIdentifier identifier: String, context: NSManagedObjectContext) -> Entry? {
         let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
         
         fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
-        
-        do {
-            let moc = CoreDataStack.shared.mainContext
-            return try moc.fetch(fetchRequest).first
-        } catch {
-            NSLog("Error fetching entry with identifier: \(identifier): \(error)")
-            return nil
+        var result: Entry? = nil
+        context.performAndWait {
+            do {
+                result = try context.fetch(fetchRequest).first
+            } catch {
+                NSLog("Error fetching entry with \(identifier): \(error)")
+            }
         }
+        return result
+//        do {
+//            let moc = CoreDataStack.shared.mainContext
+//            return try moc.fetch(fetchRequest).first
+//        } catch {
+//            NSLog("Error fetching entry with identifier: \(identifier): \(error)")
+//            return nil
+//        }
     }
     
 }
